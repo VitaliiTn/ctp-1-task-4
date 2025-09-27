@@ -16,14 +16,29 @@
 
 ## 3. Налаштування Autograding
 
-GitHub Classroom автоматично виявить конфігурацію з файлу `.github/classroom/autograding.json`.
+### Варіант A: Custom YAML (Рекомендовано)
+1. При налаштуванні autograding виберіть **"Custom YAML"**
+2. Перевірте що відображається наш `.github/workflows/classroom.yml`
+3. Натисніть **"Commit Changes"**
+
+**Переваги:**
+- Використовує оптимізований workflow
+- Підтримка multi-compiler testing
+- Кращі налаштування dependencies
+
+### Варіант B: GitHub Preset
+1. Виберіть **"GitHub Preset"**  
+2. Система використає стандартний workflow + наш `autograding.json`
+3. Попередження: перезапише наш custom workflow
 
 **Система оцінювання (100 балів):**
+- Build Project: 0 балів (підготовка)
 - Factorial Function: 40 балів
 - isPrime Function: 30 балів  
 - GCD Function: 30 балів
 
 **Тести автоматично:**
+- Встановлюють dependencies (cmake, build-essential)
 - Компілюють код студентів
 - Запускають unit тести
 - Перевіряють правильність виводу

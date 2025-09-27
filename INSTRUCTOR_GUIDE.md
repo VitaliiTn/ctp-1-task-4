@@ -28,10 +28,8 @@ GitHub Classroom автоматично виявить наш файл `.github/
 - Або використайте особистий репозиторій з правильними налаштуваннями доступу
 
 **Система оцінювання (100 балів):**
-- Build Project: 0 балів (підготовка)
-- Factorial Function: 40 балів
-- isPrime Function: 30 балів  
-- GCD Function: 30 балів
+- Build Project: 10 балів (збірка проекту)
+- Run All Tests: 90 балів (всі функції разом)
 
 **Тести автоматично:**
 - Встановлюють dependencies (cmake, build-essential)

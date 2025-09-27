@@ -26,39 +26,19 @@ jobs:
         command: echo "Build completed successfully"
         timeout: 5
         max-score: 10
-    - name: Factorial Function Test
-      id: factorial-test
+    - name: Run All Tests
+      id: run-all-tests
       uses: classroom-resources/autograding-command-grader@v1
       with:
-        test-name: Factorial Function Test
+        test-name: Run All Tests
         setup-command: cd build
-        command: "./tests | grep 'Test 1: factorial function... PASSED' || exit 1"
+        command: ./tests
         timeout: 2
-        max-score: 30
-    - name: isPrime Function Test
-      id: isprime-test
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: isPrime Function Test
-        setup-command: cd build
-        command: "./tests | grep 'Test 2: isPrime function... PASSED' || exit 1"
-        timeout: 2
-        max-score: 30
-    - name: GCD Function Test
-      id: gcd-test
-      uses: classroom-resources/autograding-command-grader@v1
-      with:
-        test-name: GCD Function Test
-        setup-command: cd build
-        command: "./tests | grep 'Test 3: gcd function... PASSED' || exit 1"
-        timeout: 2
-        max-score: 30
+        max-score: 90
     - name: Autograding Reporter
       uses: classroom-resources/autograding-grading-reporter@v1
       env:
         BUILD-PROJECT_RESULTS: "${{steps.build-project.outputs.result}}"
-        FACTORIAL-TEST_RESULTS: "${{steps.factorial-test.outputs.result}}"
-        ISPRIME-TEST_RESULTS: "${{steps.isprime-test.outputs.result}}"
-        GCD-TEST_RESULTS: "${{steps.gcd-test.outputs.result}}"
+        RUN-ALL-TESTS_RESULTS: "${{steps.run-all-tests.outputs.result}}"
       with:
-        runners: build-project,factorial-test,isprime-test,gcd-test
+        runners: build-project,run-all-tests

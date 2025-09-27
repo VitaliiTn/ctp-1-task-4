@@ -1,0 +1,107 @@
+# Compiled Object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+*.app
+
+# Libraries
+*.lib
+*.a
+*.so
+*.dylib
+*.dll
+
+# CMake build files
+build/
+CMakeFiles/
+CMakeCache.txt
+cmake_install.cmake
+Makefile
+*.cmake
+
+# Visual Studio files
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.sln
+*.suo
+*.user
+*.ncb
+*.aps
+*.pch
+*.vspscc
+*_i.c
+*_p.c
+*.tlb
+*.tlh
+*.bak
+*.cache
+*.ilk
+*.log
+*.sbr
+*.scc
+[Bb]in
+[Dd]ebug*/
+obj/
+[Rr]elease*/
+_ReSharper*/
+[Tt]est[Rr]esult*
+.vs/
+*.opensdf
+*.sdf
+*.cachefile
+*.VC.db
+*.VC.VC.opendb
+
+# MinGW / GCC specific
+*.gch
+*.pch
+
+# Code::Blocks
+*.depend
+*.layout
+
+# Dev-C++
+Makefile.win
+
+# VS Code specific files (optional - може бути корисно зберегти конфігурацію)
+# .vscode/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Linux
+*~
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+*~
+
+# Log files
+*.log
+
+# Editor backup files
+*~
+*.orig
+*.rej
+
+# Test output files
+test_output.txt
+results.txt
+
+# Custom build directories
+dist/
+out/

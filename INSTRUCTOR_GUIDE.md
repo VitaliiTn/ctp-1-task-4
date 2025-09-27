@@ -16,20 +16,16 @@
 
 ## 3. Налаштування Autograding
 
-### Варіант A: Custom YAML (Рекомендовано)
-1. При налаштуванні autograding виберіть **"Custom YAML"**
-2. Перевірте що відображається наш `.github/workflows/classroom.yml`
-3. Натисніть **"Commit Changes"**
+GitHub Classroom автоматично виявить наш файл `.github/workflows/classroom.yml`.
 
-**Переваги:**
-- Використовує оптимізований workflow
-- Підтримка multi-compiler testing
-- Кращі налаштування dependencies
+**При створенні assignment:**
+1. У секції "Add autograding tests" ви побачите повідомлення про виявлений YAML
+2. **Рекомендовано:** Виберіть **"Use existing workflow"** або **"Custom YAML"**
+3. Система використає наш налаштований workflow
 
-### Варіант B: GitHub Preset
-1. Виберіть **"GitHub Preset"**  
-2. Система використає стандартний workflow + наш `autograding.json`
-3. Попередження: перезапише наш custom workflow
+**Якщо з'явиться помилка про permissions:**
+- Переконайтесь, що repository знаходиться в тій же організації що й classroom
+- Або використайте особистий репозиторій з правильними налаштуваннями доступу
 
 **Система оцінювання (100 балів):**
 - Build Project: 0 балів (підготовка)

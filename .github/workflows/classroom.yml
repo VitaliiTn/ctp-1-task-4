@@ -1,38 +1,64 @@
-name: GitHub Classroom Workflow
-
-on: 
+name: Autograding Tests
+on:
   push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
-
+  repository_dispatch:
 permissions:
   checks: write
   actions: read
   contents: read
-
 jobs:
-  build:
-    name: Autograding
+  run-autograding-tests:
     runs-on: ubuntu-latest
     if: github.actor != 'github-classroom[bot]'
-    
     steps:
-    - uses: actions/checkout@v4
-
+    - name: Checkout code
+      uses: actions/checkout@v4
     - name: Install dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential cmake
-
-    - name: Build and test
-      run: |
-        mkdir build
-        cd build
-        cmake ..
-        make
-        ./tests > ../test_results.txt
-        cat ../test_results.txt
-
-    - name: Run tests
-      uses: education/autograding@v1
+        sudo apt-get install -y build-essential cmake g++
+    - name: Build Project
+      id: build-project
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Build Project
+        setup-command: mkdir -p build && cd build && cmake .. && make
+        command: echo "Build completed successfully"
+        timeout: 5
+        max-score: 10
+    - name: Factorial Function Test
+      id: factorial-test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: Factorial Function Test
+        setup-command: cd build
+        command: "./tests | grep 'Test 1: factorial function... PASSED' || exit 1"
+        timeout: 2
+        max-score: 30
+    - name: isPrime Function Test
+      id: isprime-test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: isPrime Function Test
+        setup-command: cd build
+        command: "./tests | grep 'Test 2: isPrime function... PASSED' || exit 1"
+        timeout: 2
+        max-score: 30
+    - name: GCD Function Test
+      id: gcd-test
+      uses: classroom-resources/autograding-command-grader@v1
+      with:
+        test-name: GCD Function Test
+        setup-command: cd build
+        command: "./tests | grep 'Test 3: gcd function... PASSED' || exit 1"
+        timeout: 2
+        max-score: 30
+    - name: Autograding Reporter
+      uses: classroom-resources/autograding-grading-reporter@v1
+      env:
+        BUILD-PROJECT_RESULTS: "${{steps.build-project.outputs.result}}"
+        FACTORIAL-TEST_RESULTS: "${{steps.factorial-test.outputs.result}}"
+        ISPRIME-TEST_RESULTS: "${{steps.isprime-test.outputs.result}}"
+        GCD-TEST_RESULTS: "${{steps.gcd-test.outputs.result}}"
+      with:
+        runners: build-project,factorial-test,isprime-test,gcd-test

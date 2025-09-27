@@ -67,8 +67,8 @@ _ReSharper*/
 # Dev-C++
 Makefile.win
 
-# VS Code specific files (optional - може бути корисно зберегти конфігурацію)
-# .vscode/
+# VS Code specific files (конфігурації включено для зручності студентів)
+# .vscode/ - закоментовано, щоб зберегти налаштування
 
 # macOS
 .DS_Store

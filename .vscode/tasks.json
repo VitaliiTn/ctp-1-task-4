@@ -1,0 +1,99 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "shell",
+            "command": "mingw32-make",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": ["$gcc"],
+            "detail": "Build the project using MinGW",
+            "dependsOn": "cmake-configure-if-needed"
+        },
+        {
+            "label": "build-msvc",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["--build", "."],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "problemMatcher": ["$msCompile"],
+            "detail": "Build the project using MSVC",
+            "dependsOn": "cmake-configure-msvc-if-needed"
+        },
+        {
+            "label": "cmake-configure",
+            "type": "shell",
+            "command": "cmake",
+            "args": ["-G", "MinGW Makefiles", ".."],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "detail": "Configure project with CMake for MinGW"
+        },
+        {
+            "label": "cmake-configure-msvc",
+            "type": "shell",
+            "command": "cmake",
+            "args": [".."],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "detail": "Configure project with CMake for MSVC"
+        },
+        {
+            "label": "cmake-configure-if-needed",
+            "type": "shell",
+            "command": "cmd",
+            "args": ["/c", "if not exist CMakeCache.txt cmake -G \"MinGW Makefiles\" .."],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "detail": "Configure project with CMake only if needed"
+        },
+        {
+            "label": "cmake-configure-msvc-if-needed",
+            "type": "shell",
+            "command": "cmd",
+            "args": ["/c", "if not exist CMakeCache.txt cmake .."],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "detail": "Configure project with CMake for MSVC only if needed"
+        },
+        {
+            "label": "clean",
+            "type": "shell",
+            "command": "mingw32-make",
+            "args": ["clean"],
+            "group": "build",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "detail": "Clean build artifacts"
+        },
+        {
+            "label": "run-tests",
+            "type": "shell",
+            "command": "./tests.exe",
+            "group": "test",
+            "options": {
+                "cwd": "${workspaceFolder}/build"
+            },
+            "dependsOn": "build",
+            "detail": "Run tests after building"
+        }
+    ]
+}

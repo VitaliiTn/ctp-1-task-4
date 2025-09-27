@@ -1,9 +1,19 @@
 {
   "tests": [
     {
+      "name": "Build Project",
+      "setup": "sudo apt-get update && sudo apt-get install -y build-essential cmake",
+      "run": "mkdir build && cd build && cmake .. && make",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 30,
+      "points": 0
+    },
+    {
       "name": "Factorial Function Test",
-      "setup": "mkdir build && cd build && cmake .. && make",
-      "run": "cd build && ./tests",
+      "setup": "",
+      "run": "cd build && ./tests | grep 'Test 1: factorial function'",
       "input": "",
       "output": "Test 1: factorial function... PASSED",
       "comparison": "included",
@@ -13,7 +23,7 @@
     {
       "name": "isPrime Function Test", 
       "setup": "",
-      "run": "cd build && ./tests",
+      "run": "cd build && ./tests | grep 'Test 2: isPrime function'",
       "input": "",
       "output": "Test 2: isPrime function... PASSED",
       "comparison": "included",
@@ -23,7 +33,7 @@
     {
       "name": "GCD Function Test",
       "setup": "",
-      "run": "cd build && ./tests", 
+      "run": "cd build && ./tests | grep 'Test 3: gcd function'",
       "input": "",
       "output": "Test 3: gcd function... PASSED",
       "comparison": "included",

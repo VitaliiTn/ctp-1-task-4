@@ -1,0 +1,34 @@
+{
+  "tests": [
+    {
+      "name": "Factorial Function Test",
+      "setup": "mkdir build && cd build && cmake .. && make",
+      "run": "cd build && ./tests",
+      "input": "",
+      "output": "Test 1: factorial function... PASSED",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 40
+    },
+    {
+      "name": "isPrime Function Test", 
+      "setup": "",
+      "run": "cd build && ./tests",
+      "input": "",
+      "output": "Test 2: isPrime function... PASSED",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 30
+    },
+    {
+      "name": "GCD Function Test",
+      "setup": "",
+      "run": "cd build && ./tests", 
+      "input": "",
+      "output": "Test 3: gcd function... PASSED",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 30
+    }
+  ]
+}

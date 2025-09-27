@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install build tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake g++
+    
+    - name: Configure CMake
+      run: |
+        cmake -B build -S .
+    
+    - name: Build
+      run: |
+        cmake --build build
+    
+    - name: Test
+      run: |
+        cd build
+        ./tests
+        
+  test-multiple-compilers:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        compiler: [g++, clang++]
+        
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Install build tools
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y build-essential cmake g++ clang
+    
+    - name: Build and test with ${{ matrix.compiler }}
+      env:
+        CXX: ${{ matrix.compiler }}
+      run: |
+        mkdir build-${{ matrix.compiler }}
+        cd build-${{ matrix.compiler }}
+        cmake -DCMAKE_CXX_COMPILER=${{ matrix.compiler }} ..
+        make
+        ./tests
